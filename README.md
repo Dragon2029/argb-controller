@@ -19,7 +19,7 @@
 ---
 
 ## 📖 نظرة عامة
-**ARGB Controller** V1
+**ARGB Controller** V1.0
 
 هو مشروع يهدف للتحكم الكامل في إضاءة المراوح (ARGB Fans) عبر لوحة **Arduino Leonardo**، مع واجهة سطح مكتب احترافية مبنية بـ **Python + PyQt6**.
 
