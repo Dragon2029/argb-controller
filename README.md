@@ -2,6 +2,319 @@
 
 <img src="https://github.com/user-attachments/assets/43d79049-ab8c-4f8e-a674-e3c5f2038e6e" alt="ARGB Controller" width="120"/>
 
+# 🎨 ARGB Controller
+
+**برنامج تحكم كامل في إضاءة ARGB للمراوح عبر Arduino Leonardo**
+
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![PyQt6](https://img.shields.io/badge/PyQt6-6.x-41CD52?style=flat&logo=qt&logoColor=white)](https://pypi.org/project/PyQt6/)
+[![Arduino](https://img.shields.io/badge/Arduino-Leonardo-00979D?style=flat&logo=arduino&logoColor=white)](https://www.arduino.cc/)
+[![FastLED](https://img.shields.io/badge/FastLED-Library-orange?style=flat)](https://fastled.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-0078D6?style=flat)](#-التحميل-والتثبيت)
+
+[المميزات](#-المميزات) •
+[التحميل](#-التحميل-والتثبيت) •
+[التوصيلات](#-التوصيلات-wiring-diagram) •
+[الاستخدام](#-طريقة-الاستخدام) •
+[البروتوكول](#-بروتوكول-الاتصال-serial) •
+[English](README.en.md)
+
+</div>
+
+---
+
+## 📖 نظرة عامة
+
+**ARGB Controller v1.0**
+
+مشروع للتحكم الكامل في إضاءة المراوح (ARGB Fans) عبر لوحة **Arduino Leonardo**، مع واجهة سطح مكتب احترافية مبنية بـ **Python + PyQt6**.
+
+يدعم البرنامج **12 وضع إضاءة**، و**تفاعل صوتي مباشر** (ميكروفون + صوت الـ Desktop)، و**لوحة ألوان تفاعلية بشكل خلية نحل**، و**تتالي ألوان تلقائي مع انتقال سلس**، وحفظ الإعدادات على الـ **EEPROM** داخل الأردوينو.
+
+> 🧑‍💻 **المطور:** المهندس / فؤاد محمد
+> 📦 **الإصدار:** v1.0
+
+---
+
+## 🖼️ لقطات الشاشة
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/32692c4c-d1fe-44fe-9b89-eb47d0cac55f" alt="الواجهة الرئيسية" width="280"/>
+  &nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/f510822f-aaf4-47b1-bae3-fc79bebb013f" alt="الواجهة الرئيسية - وضع آخر" width="280"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/dbbb7593-c730-49b6-aaf2-a69a8009f822" alt="نافذة البرنامج" width="234"/>
+</p>
+
+---
+
+## ✨ المميزات
+
+### 🎛️ التحكم والإضاءة
+
+- ✅ **12 وضع إضاءة**: ثابت، قوس قزح، تنفس، تفاعل صوتي، شهاب، نجوم، موجة، إطفاء، ذهاب وإياب، نبض مزدوج، مسح لوني، ستروب.
+- ✅ **تحكم كامل في السطوع** (0-255).
+- ✅ **سرعة تأثيرات قابلة للتعديل** (1-100%).
+- ✅ **حساسية صوت قابلة للضبط** (1x - 20x).
+- ✅ **عدد ليدات قابل للتغيير** (حتى 100 LED) مع **معايرة** من داخل البرنامج.
+
+### 🎨 الألوان
+
+- ✅ **لوحة ألوان خلية نحل تفاعلية** (Honeycomb Picker): كليك يسار = تثبيت اللون، كليك يمين = إضافة للتتالي.
+- ✅ **9 ألوان جاهزة** في قائمة سريعة، و**لون مخصص** عبر نافذة اختيار متقدمة.
+- ✅ **تتالي ألوان** قابل للبرمجة (Sequence):
+  - إضافة ألوان مخصصة أو من القائمة، وحذف أو مسح الكل.
+  - تشغيل تلقائي بفاصل زمني قابل للتعديل.
+  - **انتقال سلس** بين الألوان (Fade).
+  - خيار الحفاظ على التأثير الحالي (بدون الرجوع للوضع الثابت).
+
+### 🔊 التفاعل الصوتي
+
+- ✅ **مصدر صوت اختياري**: ميكروفون أو **صوت الـ Desktop** (Loopback).
+- ✅ **مؤشرات Bass / Treble مباشرة** في الواجهة.
+- ✅ يعمل عبر `sounddevice` (ميكروفون) و`pyaudiowpatch` (Desktop على ويندوز)، و`PulseAudio / PipeWire` على لينكس.
+
+### 🖥️ تجربة المستخدم
+
+- ✅ **واجهة عربية** بتصميم داكن عصري.
+- ✅ **System Tray** مع قائمة كاملة للتحكم من خارج النافذة.
+- ✅ **إغلاق ذكي**: زر X يصغّر البرنامج للـ Tray بدل قفله (قابل للتعطيل).
+- ✅ **اكتشاف تلقائي للأردوينو** (يميّز Arduino Leonardo بنجمة ★).
+- ✅ **حفظ واسترجاع الإعدادات** تلقائيًا، و**حفظ على الأردوينو** (EEPROM).
+- ✅ يعمل على **Windows** و**Linux**.
+
+---
+
+## 📥 التحميل والتثبيت
+
+حمّل آخر إصدار من صفحة **[Releases](https://github.com/<USER>/<REPO>/releases/latest)**:
+
+| النظام | الملف | طريقة التثبيت |
+|---|---|---|
+| 🪟 **Windows 10 / 11 (64-bit)** | `ARGB_Controller_Setup_v1.0.exe` | دبل كليك ثم Next |
+| 🐧 **Ubuntu / Debian / Mint / Pop!_OS** | `argb-controller_1.0_all.deb` | `sudo apt install ./argb-controller_1.0_all.deb` |
+| 🧑‍💻 **من الكود المصدري** | هذا المستودع | [شوف الخطوات تحت](#-التشغيل-من-الكود-المصدري) |
+
+### 🪟 Windows
+
+1. شغّل ملف الـ Setup وكمّل التثبيت (فيه خيار اختياري للتشغيل مع ويندوز).
+2. افتح البرنامج، اختر المنفذ، واضغط **اتصال**.
+
+### 🐧 Linux (حزمة `.deb`)
+
+```bash
+sudo apt install ./argb-controller_1.0_all.deb
+argb-controller
+```
+
+- استخدم `apt install` (مش `dpkg -i`) عشان المكتبات المطلوبة تتنزّل تلقائيًا.
+- الحزمة بتضيف قاعدة **udev** بتسمح للمستخدم الحالي بفتح منفذ الأردوينو من غير مجموعة `dialout`. **افصل الأردوينو ووصّله تاني** بعد التثبيت.
+- الإعدادات بتتحفظ في `~/.config/ARGB Controller/`.
+- لإزالة البرنامج: `sudo apt remove argb-controller`.
+
+> ℹ️ الحزمة تدعم Ubuntu 22.04 وما بعده، وDebian 12 وما بعده. الأنظمة الأقدم مفيهاش `python3-pyqt6` في مستودعاتها.
+
+---
+
+## 🔧 تجهيز الأردوينو
+
+**المتطلبات:**
+
+- **Arduino Leonardo**.
+- مكتبة **FastLED** (ثبّتها من Arduino IDE ← Library Manager).
+
+**الخطوات:**
+
+1. افتح ملف `firmware/argb_firmware/argb_firmware.ino` في Arduino IDE.
+2. عدّل عدد الليدات في السكيتش إذا لزم الأمر:
+   ```cpp
+   const int fanLedCounts[NUM_FANS] = {12, 18, 15, 15};
+   ```
+3. اختر اللوحة **Arduino Leonardo** والمنفذ، ثم ارفع السكيتش.
+4. وصّل خط الـ Data لمراوح الـ ARGB بالطرف **D6** على الأردوينو (مع مقاومة 330Ω ومكثف 1000µF للاستقرار)، ثم اتبع [مخطط التوصيل](#-التوصيلات-wiring-diagram).
+
+---
+
+## 🔌 التوصيلات (Wiring Diagram)
+
+قبل تشغيل البرنامج، تأكد من توصيل الأردوينو بمنفذ الـ ARGB في المروحة بالشكل التالي:
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ad4ed69a-9ce2-46c2-bb83-307bb19dd23d" alt="ARGB Connection" width="720"/>
+</p>
+
+### 📋 خطوات التوصيل
+
+| طرف المروحة (ARGB) | طرف الأردوينو (Leonardo) | ملاحظات |
+|---|---|---|
+| **GND** (السلك الأسود) | **GND** (أي منفذ GND) | ضروري لتوحيد الأرضي بين الأردوينو والمروحة |
+| **Data** (سلك البيانات) | **D6** (Digital Pin 6) | يمكن تغييره في الكود (`#define LED_PIN 6`) |
+| **+5V** (السلك الأحمر) | ❌ **غير موصول بالأردوينو** | يتوصل بمصدر الطاقة الخاص بالمروحة |
+
+> ⚠️ **تحذير هام**
+>
+> **لا تقم بتوصيل سلك الـ 5V الخاص بالمروحة بمنفذ الـ 5V في الأردوينو.** الأردوينو لا يتحمل تيار المراوح والإضاءة العالي وقد يتضرر. المروحة لازم تاخد كهربائها من مصدر الطاقة الخاص بها (Power Supply أو اللوحة الأم)، ويتم توصيل سلك الـ Data والـ GND فقط بالأردوينو.
+>
+> يُفضّل إضافة **مقاومة 330 أوم** على سلك الداتا لحماية الأردوينو، و**مكثف 1000 ميكروفاراد** بين الـ 5V والـ GND (قريب من المروحة) لتثبيت الإضاءة ومنع الوميض.
+
+---
+
+## 🎮 طريقة الاستخدام
+
+| العنصر | الوظيفة |
+|---|---|
+| **المنفذ (COM)** | يكتشف المنافذ تلقائيًا ويميز الأردوينو بـ ★ |
+| **اتصال / قطع الاتصال** | يفتح/يغلق الاتصال التسلسلي (ينتظر ثانيتين لإعادة تشغيل اللوحة) |
+| **لوحة خلية النحل** | كليك يسار = تثبيت اللون / كليك يمين = إضافة للتتالي |
+| **أزرار الأوضاع** | تشغيل أحد الأوضاع الـ 12 مباشرة |
+| **تبديل تلقائي** | يتنقل بين الأوضاع المفضلة كل X ثانية |
+| **تتالي الألوان** | يشغّل سلسلة ألوان مع انتقال سلس |
+| **مؤشرات الصوت** | تعرض Bass/Treble لحظيًا (للتفعيل اختر وضع "تفاعل صوتي") |
+| **حفظ على الأردوينو** | يثبّت الإعدادات في EEPROM |
+
+### 💡 اختصارات الـ Tray
+
+| الإجراء | النتيجة |
+|---|---|
+| كليك يسار على أيقونة الـ Tray | إظهار / إخفاء النافذة |
+| كليك يمين على أيقونة الـ Tray | قائمة كاملة بالتحكم (الأوضاع، الاتصال، التتالي، الحفظ، الخروج) |
+| زر X | تصغير للـ Tray (قابل للتعطيل من الخانة الموجودة في البرنامج) |
+
+للتشغيل مخفيًا في الـ Tray: `ARGB_Controller.exe --tray` (أو `argb-controller --tray` على لينكس).
+
+---
+
+## 🔌 بروتوكول الاتصال (Serial)
+
+البرنامج يرسل أوامر نصية بسيطة عبر Serial بسرعة **115200 baud**. كل أمر ينتهي بـ `\n`.
+
+| الأمر | الوصف | مثال |
+|---|---|---|
+| `C:r,g,b` | تعيين لون ثابت | `C:255,0,0` |
+| `M:n` | تعيين الوضع (0-11) | `M:1` |
+| `B:n` | السطوع (0-255) | `B:200` |
+| `S:n` | السرعة (1-100) | `S:50` |
+| `N:n` | عدد الليدات | `N:60` |
+| `F:b,t` | بيانات الصوت (Bass, Treble) | `F:120,80` |
+| `K:r,g,b` | تغيير اللون بدون تغيير الوضع | `K:0,255,0` |
+| `CAL` | بدء معايرة عدد الليدات | `CAL` |
+| `SAVE` | حفظ الإعدادات في EEPROM | `SAVE` |
+
+**ردود الأردوينو:**
+
+| الرد | المعنى |
+|---|---|
+| `LED:n` | رقم الليد الحالي أثناء المعايرة |
+| `N_OK:n` | تم ضبط عدد الليدات |
+| `SAVED_OK` | تم الحفظ في EEPROM |
+
+**أرقام الأوضاع:** `0` ثابت · `1` قوس قزح · `2` تنفس · `3` تفاعل صوتي · `4` شهاب · `5` نجوم · `6` موجة · `7` إطفاء · `8` ذهاب وإياب · `9` نبض مزدوج · `10` مسح لوني · `11` ستروب
+
+---
+
+## 🛠️ التقنيات المستخدمة
+
+| التقنية | الاستخدام |
+|---|---|
+| **Python 3.9+** | لغة البرمجة الرئيسية |
+| **PyQt6** | واجهة المستخدم |
+| **pyserial** | الاتصال التسلسلي مع الأردوينو |
+| **sounddevice** | التقاط الصوت من الميكروفون |
+| **pyaudiowpatch** | التقاط صوت الـ Desktop (Windows) |
+| **PulseAudio / PipeWire** (`parec`) | التقاط صوت الـ Desktop (Linux) |
+| **numpy** | معالجة الإشارات (FFT) |
+| **FastLED** | التحكم في ليدات WS2812B |
+| **Arduino Leonardo** | لوحة التحكم الرئيسية |
+
+---
+
+## 🗂️ هيكل المشروع
+
+```text
+argb-controller/
+├── README.md                    # الشرح بالعربي
+├── README.en.md                 # English documentation
+├── LICENSE                      # MIT
+├── CHANGELOG.md                 # سجل الإصدارات
+├── requirements.txt             # مكتبات بايثون
+├── .gitignore
+│
+├── src/
+│   └── argb_controller.py       # البرنامج (واجهة PyQt6 + الصوت + السيريال)
+│
+├── firmware/
+│   └── argb_firmware/
+│       └── argb_firmware.ino    # سكيتش Arduino (FastLED + EEPROM)
+│
+└── packaging/
+    ├── windows/
+    │   ├── build_exe.bat        # بناء ملف EXE بـ PyInstaller
+    │   └── setup.iss            # سكريبت Inno Setup لملف التثبيت
+    └── linux/
+        ├── build_deb.sh         # بناء حزمة .deb
+        ├── build_binary.sh      # بناء ملف تنفيذي مستقل
+        ├── install_binary.sh    # تثبيت الملف التنفيذي لليوزر الحالي
+        └── run.sh               # تشغيل من الكود في بيئة افتراضية
+```
+
+> الملفات الناتجة (`dist/` و`build/` و`installer/`) مش بتترفع على المستودع. ارفعها في قسم **Releases**.
+
+---
+
+## 💻 التشغيل من الكود المصدري
+
+```bash
+git clone https://github.com/<USER>/<REPO>.git
+cd <REPO>
+pip install -r requirements.txt
+python src/argb_controller.py
+```
+
+على **لينكس** ثبّت الأول: `sudo apt install python3-venv libportaudio2 pulseaudio-utils libxcb-cursor0`، وبعدها شغّل `packaging/linux/run.sh`.
+
+### بناء ملفات التوزيع
+
+| الهدف | الأمر | الناتج |
+|---|---|---|
+| EXE لويندوز | `packaging\windows\build_exe.bat` | `dist\ARGB_Controller.exe` |
+| Installer لويندوز | افتح `packaging\windows\setup.iss` في Inno Setup واضغط `Ctrl+F9` (بعد بناء الـ EXE) | `installer\ARGB_Controller_Setup_v1.0.exe` |
+| حزمة `.deb` | `bash packaging/linux/build_deb.sh` | `dist/argb-controller_1.0_all.deb` |
+| ملف تنفيذي لينكس | `bash packaging/linux/build_binary.sh` | `dist/ARGB_Controller` |
+
+---
+
+## ❓ حل المشاكل
+
+| المشكلة | الحل |
+|---|---|
+| ويندوز: رسالة *This app can't run on your PC* | الـ EXE نسخة 64-bit فقط، استخدم ويندوز 10 أو 11 بنسخة 64-bit |
+| مضاد الفيروسات بيحجز الـ EXE | بيحصل مع بعض ملفات PyInstaller، أضف استثناء للملف |
+| لا يوجد تفاعل صوتي مع مصدر Desktop | لازم يكون فيه صوت شغال فعلًا على جهاز الإخراج، وقلّل الحساسية لو المؤشر ممتلئ طول الوقت |
+| لينكس: النافذة مش بتفتح | ثبّت `libxcb-cursor0` |
+| لينكس: مفيش مصدر Desktop للصوت | ثبّت `pulseaudio-utils` وتأكد إن `pactl list short sources` بيعرض مصدر `.monitor` |
+| لينكس: تعذر فتح منفذ السيريال | افصل الأردوينو ووصّله تاني بعد تثبيت `.deb`، أو أضف المستخدم لمجموعة `dialout` |
+| لينكس (GNOME): أيقونة الـ Tray مش ظاهرة | ثبّت إضافة AppIndicator، أو عطّل خيار "زر الإغلاق يصغّر للـ Tray" |
+
+---
+
+## 📄 الترخيص
+
+المشروع مرخّص تحت **MIT License**. شوف ملف [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+
+تم تصميم هذا البرنامج بواسطة **المهندس / فؤاد محمد** على Arduino Leonardo
+
+</div>
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/43d79049-ab8c-4f8e-a674-e3c5f2038e6e" alt="ARGB Controller" width="120"/>
+
 
 # 🎨 ARGB Controller
 
