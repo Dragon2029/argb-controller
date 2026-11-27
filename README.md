@@ -95,7 +95,7 @@
 | النظام | الملف | طريقة التثبيت |
 |---|---|---|
 | 🪟 **Windows 10 / 11 (64-bit)** | `ARGB_Controller_Setup_v1.0.exe` | دبل كليك ثم Next |
-| 🐧 **Ubuntu / Debian / Mint / Pop!_OS** | `argb-controller_1.0_all.deb` | `sudo apt install ./argb-controller_1.0_all.deb` |
+| 🐧 **Ubuntu / Debian / Mint / Pop!_OS** | `argb-controller_1.0.deb` | `sudo apt install ./argb-controller_1.0.deb` |
 | 🧑‍💻 **من الكود المصدري** | هذا المستودع | [شوف الخطوات تحت](#-التشغيل-من-الكود-المصدري) |
 
 ### 🪟 Windows
@@ -106,7 +106,7 @@
 ### 🐧 Linux (حزمة `.deb`)
 
 ```bash
-sudo apt install ./argb-controller_1.0_all.deb
+sudo apt install ./argb-controller_1.0.deb
 argb-controller
 ```
 
